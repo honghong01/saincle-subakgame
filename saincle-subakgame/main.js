@@ -48,10 +48,10 @@ Render.run(render);
 Runner.run(engine);
 
 ///// 배경음 ////
-const bgm = new Audio('sound/bgm.mp3');
+const bgm = new Audio('sound/bgm.mp3');
 bgm.loop = true;
 bgm.volume = 0.3;
-bgm.play();
+bgm.muted = true;
 
 //////////////////////////////////// 기본 틀 생성 E ////////////////////////////////////
 
@@ -123,7 +123,7 @@ window.onkeydown = (event) => {
             currentBody.isSleeping = false;
             disableAction = true;
 
-            const popSound = new Audio("sound/pop_sound.mp3");
+            const popSound = new Audio("sound/pop_sound.mp3");
             popSound.volume = 0.4;
             popSound.play();
 
@@ -161,7 +161,7 @@ Events.on(engine, "collisionStart", (event)=>{
             // 제일 큰 과일일때
             if(index === FRUITS_BASE.length -1){
 
-                const applause = new Audio('sound/applause.mp3');
+                const applause = new Audio('sound/applause.mp3');
                 applause.volume = 0.3;
                 applause.play().finally(()=>{
 
@@ -284,7 +284,7 @@ function popSound(index){
             break;
     }
 
-    const popSound = new Audio(soundSrc);
+    const popSound = new Audio(soundSrc);
     popSound.volume = 0.6;
     popSound.play();
 }
@@ -326,3 +326,8 @@ document.querySelector("#btnRetry").addEventListener("click", ()=>{
     }
     
 });
+
+if(confirm("저작권 무료 배경음을 켜시겠어요?")){
+    bgm.play();
+    bgm.muted = false;
+}
