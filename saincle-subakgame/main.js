@@ -152,21 +152,44 @@ Events.on(engine, "collisionStart", (event)=>{
 
             const index = collision.bodyA.index;
 
+            // 제일 큰 과일 합성중인지 확인 (confetti때문에 timeout을 넣음, 이벤트가 중복발생하여 이를 방지함).
+            let isBiggestCollision = false;
+
             // 제일 큰 과일일때
             if(index === FRUITS_BASE.length -1){
 
-                const applause = new Audio('sound/applause.mp3');
-                applause.volume = 0.3;
-                applause.play().finally(()=>{
+                if(!isBiggestCollision){
 
-                    alert('횐이를 2개나 만드시다니 대단해요!\n이어서 게임하시겠어요?');
+                    // 제일 큰 과일 합성 시작
+                    isBiggestCollision = true;
+
+                    // confetti 재생
+                    document.querySelector("#canvas").style.display = "block";
+                    document.querySelector("#btnStartConfetti").click();
 
                     // 제일큰 과일 합쳤을땐 보너스점수 1000점
                     currentScore += 1000;
                     setInnerHtml("pCurrentScore", currentScore);
-                    Composite.remove(world, [collision.bodyA, collision.bodyB]);
-                });
-                return;
+                    
+                    const applause = new Audio('sound/applause.mp3');
+                    applause.loop = true;
+                    applause.volume = 0.3;
+                    applause.play().finally(()=>{
+                        
+                        setTimeout(() => {                        
+                            alert('횐이를 2개나 만드시다니 정말 대단해요!\n이어서 게임하시겠어요?');
+                            document.querySelector("#canvas").style.display = "none";
+                            Composite.remove(world, [collision.bodyA, collision.bodyB]);
+                            document.querySelector("#btnStopConfetti").click();
+                            applause.loop = false;
+                            // 제일 큰 과일 합성 끝
+                            isBiggestCollision = false;
+                        }, 5000);
+
+                    });
+                    return;
+                
+                }
             }
 
             // 점수 화면 갱신
@@ -321,6 +344,8 @@ document.querySelector("#btnRetry").addEventListener("click", ()=>{
     
 });
 
-if(confirm("저작권 무료 bgm을 틀까요?")){
+
+document.querySelector("#popup_layer").addEventListener("click", ()=>{
+    document.querySelector("#popup_layer").style.visibility = 'hidden';
     document.querySelector("#audioBgm").play();
-}
+});
