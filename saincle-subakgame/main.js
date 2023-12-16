@@ -47,12 +47,6 @@ Composite.add(world, [leftWall, rightWall, ground, topLine]);
 Render.run(render);
 Runner.run(engine);
 
-///// 배경음 ////
-const bgm = new Audio('sound/bgm.mp3');
-bgm.loop = true;
-bgm.volume = 0.3;
-bgm.muted = true;
-
 //////////////////////////////////// 기본 틀 생성 E ////////////////////////////////////
 
 // 게임용 전역변수a
@@ -327,7 +321,6 @@ document.querySelector("#btnRetry").addEventListener("click", ()=>{
     
 });
 
-if(confirm("저작권 무료 배경음을 켜시겠어요?")){
-    bgm.play();
-    bgm.muted = false;
+if(confirm("저작권 무료 bgm을 틀까요?")){
+    document.querySelector("#audioBgm").play();
 }
