@@ -8,41 +8,44 @@
     <script src="/confetti_v2.js"></script>
     <style>
       /*popup*/
-      .popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); text-align: center; padding-top: 10%; }
+      .popup_layer {position:fixed;top:0;left:0;z-index: 10000; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); text-align: center; padding-top: 5%; }
     </style>
     <title>사인클 만들기</title>
   </head>
   <body>    
     <canvas id="canvas" style="position: absolute; z-index: 9999; display: none;"></canvas>
     <div style="display: flex; justify-content: center; min-width: 900px;">
-      <div id="divGame" style="overflow: hidden; box-shadow: 5px 5px; padding-right: 4px;"></div>
-      <div style="width: 400px; margin: auto; margin-left: 30px;">
-        <div style="width:100%; text-align: center; margin-bottom: 20px;">
-          <audio id="audioBgm" controls src="sound/bgm.mp3" loop>배경음</audio>
-        </div>
-        <div style="background-color: lavender; border-radius: 10px; text-align: center; margin-bottom: 30px; padding:35px; box-shadow: 5px 5px;">
-          <div style="display: flex;">            
-            <div style="margin: auto; margin-top: 5px;">
-              <img src="bestScore.png"/>
-            </div>
-            <p id="pMaxScore" style="font-size:25px; margin:auto;">0</p>
+      <div style="display: flex; margin: 0 auto;">
+        <div id="divGame" style="overflow: hidden; box-shadow: 5px 5px; padding-right: 4px;"></div>
+        <div style="width: 400px; margin: auto; margin-left: 30px;">
+          <div style="width:100%; text-align: center; margin-bottom: 20px;">
+            <audio id="audioBgm" controls src="sound/bgm.mp3" loop>배경음</audio>
           </div>
-          <div style="display: flex;">
-            <div style="margin: auto; margin-top: 5px;">
-              <img src="currentScore.png"/>
+          <div style="background-color: lavender; border-radius: 10px; text-align: center; margin-bottom: 30px; padding:35px; box-shadow: 5px 5px;">
+            <div style="display: flex;">            
+              <div style="margin: auto; margin-top: 5px;">
+                <img src="bestScore.png"/>
+              </div>
+              <p id="pMaxScore" style="font-size:25px; margin:auto;">0</p>
             </div>
-            <p id="pCurrentScore" style="font-size:25px; margin:auto;">0</p>
+            <div style="display: flex;">
+              <div style="margin: auto; margin-top: 5px;">
+                <img src="currentScore.png"/>
+              </div>
+              <p id="pCurrentScore" style="font-size:25px; margin:auto;">0</p>
+            </div>
           </div>
-        </div>
-        <div style="background-color: lavender; border-radius: 10px; height: 400px; box-shadow: 5px 5px;">
-          <img src="img_info3.png" width="350px" style="padding:20px 25px 15px 25px;" />
-        </div>
-        <div id="divRetry" style="width:100%; display: flex; justify-content: center; margin-top: 30px;">
-          <img id="btnRetry" src="btn_retry.png" width="350px" />
+          <div style="background-color: lavender; border-radius: 10px; height: 400px; box-shadow: 5px 5px;">
+            <img src="img_info3.png" width="350px" style="padding:20px 25px 15px 25px;" />
+          </div>
+          <div id="divRetry" style="width:100%; display: flex; justify-content: center; margin-top: 30px;">
+            <img id="btnRetry" src="btn_retry.png" width="350px" />
+          </div>
         </div>
       </div>
     </div>
     <div class="popup_layer" id="popup_layer">
+      <h1 style="color: azure;">아무데나 클릭하고 게임 시작하기</h1>
       <img src="tutorial.jpg" width="600px" />
     </div>
     <div class="buttonContainer" style="margin-top: 100px;">
