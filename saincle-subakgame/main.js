@@ -54,11 +54,12 @@ let currentBody = null;
 let currentFruit = null;
 let disableAction = false;
 let interval = null;
+let isBiggestCollision = false;
 
 // 과일 추가
 function addFruit(){
     const index = Math.floor(Math.random() * 5);
-    //const index = 9;
+    //const index = 10;
     const fruit = FRUITS_BASE[index];
 
     const body = Bodies.circle(250, 50, fruit.radius, {
@@ -152,12 +153,11 @@ Events.on(engine, "collisionStart", (event)=>{
 
             const index = collision.bodyA.index;
 
-            // 제일 큰 과일 합성중인지 확인 (confetti때문에 timeout을 넣음, 이벤트가 중복발생하여 이를 방지함).
-            let isBiggestCollision = false;
 
             // 제일 큰 과일일때
             if(index === FRUITS_BASE.length -1){
 
+                // 제일 큰 과일 합성중인지 확인 (confetti때문에 timeout을 넣음, 이벤트가 중복발생하여 이를 방지함).
                 if(!isBiggestCollision){
 
                     // 제일 큰 과일 합성 시작
@@ -186,10 +186,9 @@ Events.on(engine, "collisionStart", (event)=>{
                             isBiggestCollision = false;
                         }, 5000);
 
-                    });
-                    return;
-                
+                    });                
                 }
+                return;
             }
 
             // 점수 화면 갱신
